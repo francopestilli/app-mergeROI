@@ -9,6 +9,48 @@
 
 # app-mergeROI
 
+<!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
+
+> **Merges two named ROIs, or all ROIs, of an ROI collection into a single binary ROI with a compiled MATLAB (vistasoft) script.**
+
+Reads the ROI NIfTI files of an rois dataset and combines the two requested ROIs (or every ROI when either name is left empty) into one binary ROI containing all their voxels. Use it to build a larger region from smaller ones before tracking or analysis. The ROIs must be in the same space; misaligned ROIs give an unusable output without an error.
+
+| | |
+|---|---|
+| 📥 **Inputs** | `neuro/rois` |
+| 📤 **Outputs** | `neuro/rois` |
+| 🐳 **Container** | `brainlife/mcr:r2019a` |
+| ⚙️ **Resources** | 1 CPUs |
+| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.314](https://doi.org/10.25663/brainlife.app.314) |
+
+#### 📥 Inputs
+
+| Input | Datatype | Required | Description |
+|---|---|---|---|
+| `roi` | `neuro/rois` | yes | Collection of ROI NIfTI files (rois folder) in the same space. |
+
+#### 📤 Outputs
+
+| Output | Datatype | Description |
+|---|---|---|
+| `output` | `neuro/rois` | ROI collection containing the single merged ROI. |
+
+<details>
+<summary><b>⚙️ Parameters</b> (3)</summary>
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `roi1_name` | string |  | If this field is left empty, the all rois within the ROI dataset will be merged. |
+| `roi2_name` | string |  | If this field is left empty, the all rois within the ROI dataset will be merged. |
+| `roiout_name` | string |  | Name of the merged output ROI file; required (the App stops with an error when it is empty). |
+
+</details>
+
+📚 **References used by this App:**
+- Avesani P, McPherson B, Hayashi S, et al. The open diffusion data derivatives, brain data upcycling via integrated publishing of derivatives and reproducible open cloud services. Sci Data 6, 69 (2019). [doi:10.1038/s41597-019-0073-y](https://doi.org/10.1038/s41597-019-0073-y)
+
+<!-- brainlife-app:end -->
+
 This app will take one brainlife dataset of the ROI datatype and merge two rois (or all rois) within the ROI dataset into one large ROI. Rois may overlap with one another.
 
 Users can input a string to tell the app which rois that want to merge. If the user does not specify which rois to merge (i.e., by leaving either field blank), it will merge all rois in the ROI dataset.
